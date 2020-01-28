@@ -51,6 +51,9 @@ export class GameLobbyComponent implements OnInit {
     }else if(this.gameData.action==="joined"){
       this.gameService.join(this.gameData.gameName)
     }
+    else{
+      
+    }
   }
 
   gameRoundEvent(data:any){

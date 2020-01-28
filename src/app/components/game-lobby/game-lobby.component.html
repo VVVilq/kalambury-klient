@@ -1,0 +1,34 @@
+
+<div class="game-container" *ngIf="active">
+    <p>Game Started</p>
+    <div class="drawing-container">
+        dsadsa
+    </div>
+
+    <div class="game-input-container">
+        <div class="score">
+             <p>score</p>
+        </div>
+        <div class="game-chat">
+            <div > for each</div>
+        </div>
+    </div>
+</div>
+
+<div class="lobby-container" *ngIf="(!active) && gameCreator">
+
+    <h3>start the game</h3>
+    <div *ngFor="let player of players">
+        <p>{{player.username}}</p>
+    </div>
+    <button type="button" (click)="startGame()" class="btn btn-outline-primary"> Start </button>
+    <button type="button" (click)="quit()" class="btn btn-outline-primary"> Quit </button>
+</div>
+
+<div class="lobby-container" *ngIf="(!active) && !gameCreator">
+    <h3>waiting for game to start</h3>
+    <div *ngFor="let player of players">
+        <p>{{player.username}}</p>
+    </div>
+    <button type="button" (click)="quit()" class="btn btn-outline-primary"> Quit </button>
+</div>

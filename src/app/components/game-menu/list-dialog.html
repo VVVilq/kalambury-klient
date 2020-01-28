@@ -1,0 +1,21 @@
+
+ 
+        <h1 mat-dialog-title>Create custom list</h1>
+        <div class="dialog-content" mat-dialog-content>
+          <mat-form-field class="full-width" floatLabel="never">
+            <input type="text" class="form-field-input"
+            placeholder="Enter list name" matInput [(ngModel)]="data.name">
+          </mat-form-field>
+          <mat-form-field class="full-width " floatLabel="never">
+            <textarea  type="text" class="form-field-input"
+            placeholder="Enter room name" matInput [(ngModel)]="data.words"></textarea>
+          </mat-form-field>
+        </div>
+        <div  mat-dialog-actions>
+          <button class="btn btn-secondary" mat-button (click)="onNoClick()">No Thanks</button>
+          <button class="btn btn-secondary" mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+        </div>
+  
+   
+    
+

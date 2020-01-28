@@ -1,1 +1,87 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100% !important }
+
+app-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.hidden-ico-button{
+    visibility: hidden;
+    float: right;
+    }
+    
+    .ico-button{
+        float: right;
+       
+    bottom: 0;
+    visibility: visible;
+    
+    }
+
+.full-width{
+    width: 100%;
+}
+
+
+.cdk-live-announcer-element{
+    display: none !important;
+}
+
+.cdk-overlay-container{
+    position: absolute !important; 
+    top: 30% !important;
+    left: 40% !important;
+    background-color: #aa5959;
+    border: 2px solid #333;
+}
+
+.custom-dialog-container .mat-dialog-container {
+    position: absolute !important; 
+    top: 30% !important;
+    left: 40% !important;
+    width: 500px;
+    height: 400px;
+    background-color: aliceblue;
+    border: 2px solid #333;
+}
+
+.custom-dialog-container list-dialog{
+    height: 100% !important;
+    display: inline-block;
+}
+
+.custom-dialog-container list-dialog .mat-dialog-content{
+    height: 70%;
+    
+}
+
+app-game-lobby{
+    width: 70%;
+    height: 80%;
+}
+
+mat-form-field input{
+    border: 2px solid gray !important;
+    background:white !important;
+    padding: 5px 5px 5px 10px !important;
+    margin-bottom: 10px !important;
+}
+
+mat-form-field textarea{
+    border: 2px solid gray !important;
+    background:white !important;
+    padding: 5px 5px 5px 10px !important;
+    margin-bottom: 10px !important;
+}
+
+mat-form-field span{
+    color: gray !important;
+}
+mat-form-field  span label{
+    padding-left:11px !important;
+    margin-top: 4px !important;
+}
+

@@ -1,0 +1,88 @@
+<div class="container ">
+    <h1 class="logo">Game Menu</h1>
+    <div class="game-menu jumbotron">
+        <div class="game-parameters">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="exampleSelect1">Custom words propability</label>
+                    <select class="form-control" formControlName="wordsFrequency" id="exampleSelect1">
+                        <option value="Never">Never</option>
+                        <option value='Seldom'>Seldom</option>
+                        <option value="Sometimes">Sometimes</option>
+                        <option value="Often"> Often</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect2">Drawing time</label>
+                    <select class="form-control" formControlName="drawingTime" id="exampleSelect2">
+                        <option value="60">60</option>
+                        <option value="90">90</option>
+                        <option value="120">120</option>
+                        <option value="180">180</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelect3">Max points</label>
+                    <select class="form-control" formControlName="maxPoints" id="exampleSelect3">
+                        <option value="1000">1000</option>
+                        <option value="2000">2000</option>
+                        <option value="3000">3000</option>
+                    </select>
+                </div>
+                <p class="game-info">When creating new room you can choose custom word lists and game parameters</p>
+
+                <div class="form-group">
+                    <label class="input-with-button-container">
+                        <input type="email" #newGameInput (keyup)="onNewGameInput(newGameInput.value)" class="form-control input-with-button" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter room name">
+                        <button type="button" (click)="createGame()" class="btn btn-outline-primary log-out-btn">Create Game</button>
+                    </label>
+
+                </div>
+                <hr class="my-4">
+                <div class="form-group">
+                    <label class="input-with-button-container">
+                        <input type="email" #joinGameInput (keyup)="onJoinGameInput(joinGameInput.value)" class="form-control input-with-button" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter room name">
+                        <button (click)="joinGame()" type="button" class="btn btn-outline-primary log-out-btn">Join Game</button>
+                    </label>
+
+
+                </div>
+            </form>
+
+        </div>
+
+        <div class="game-list-container">
+            <div class="list-panel jumbotron">
+                <h3 class="logo">Custom word lists</h3>
+                <fieldset class="form-group word-list">
+
+                    <div *ngFor="let customList of customLists; let i=index" class="form-check list-elements">
+                        <label class="form-check-label full-width">
+                            <input class="form-check-input" type="checkbox" [value]="customList.name" (change)="onCheckChange($event)" >
+                            {{customList.name}}
+                            <button (click)="deleteCustomList(customList)" class="hidden-ico-button">
+                                <mat-icon class="ico-button"> delete </mat-icon>
+                            </button>
+                            <button (click) = "editListDialog(customList)" class="hidden-ico-button">
+                                <mat-icon class="ico-button"> edit </mat-icon>
+                            </button>
+                        </label>
+                    </div>
+
+
+                </fieldset>
+
+                <button type="button" class="btn btn-outline-primary" (click)="createListDialog()">Create new
+                    List</button>
+            </div>
+            <button type="button" class="btn btn-outline-primary log-out-btn" (click)="logOut()">Log out</button>
+        </div>
+
+
+    </div>
+
+
+
+</div>

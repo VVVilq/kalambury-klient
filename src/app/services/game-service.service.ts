@@ -24,7 +24,7 @@ export class GameServiceService {
   }
 
   guess(post: any,gameName:string) {
-    return this.socketClient.send(`/app/create/${gameName}`, post);
+    return this.socketClient.send(`/app/guessTheWord/${gameName}`, post);
   }
 
   onGameCreation(): Observable<any> {

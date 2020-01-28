@@ -8,11 +8,16 @@
     <div class="game-input-container">
         <div class="score">
              <p>score</p>
+             <label class="scorce-wraper" *ngFor="let player of players">
+                 <p class="player-name">{{player.username}}</p><p class="player-points"> {{player.points}}</p>
+             </label>
         </div>
         <div class="game-chat">
             <div class="messages">
                 <p *ngFor="let message of gameChat">{{message}}</p>
             </div>
+
+            <input type="text" #guessWordInput (keyup.enter)="guessWord(guessWordInput.value)" class="form-control" >
         </div>
     </div>
 </div>

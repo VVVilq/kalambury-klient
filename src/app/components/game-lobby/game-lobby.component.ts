@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { GameServiceService } from 'src/app/services/game-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { GameStateService } from 'src/app/services/game-state.service';
+import { stringify } from 'querystring';
 
 interface Player{
   username:string,
@@ -31,6 +32,8 @@ export class GameLobbyComponent implements OnInit {
   active:boolean =false;
   players:Player[];
   gameCreator:boolean=false;
+  word:any={guess:'',username:''};
+
 
 
   ngOnInit() {
@@ -56,9 +59,25 @@ export class GameLobbyComponent implements OnInit {
       this.gameChat.push("You are now drawing: " + data.drawingWord)
     }
 
+    if(data.guess){
+      this.gameChat.push(data.username+ " : "+data.guess);
+    }
+
     if(data.gameEvent){
       if(data.gameEvent=="DRAWING"){
         this.gameChat.push(data.trigerIdentifier + " is now drawing")
+      }
+
+      if(data.gameEvent=="WON"){
+        this.gameChat.push(data.trigerIdentifier + " won the game")
+      }
+
+      if(data.gameEvent=="GUESSED"){
+        this.gameChat.push(data.trigerIdentifier + " guessed the word")
+        let result = this.players.find(obj => {
+          return obj.username === data.trigerIdentifier;
+        })
+        result.points+=100
       }
     }
   }
@@ -77,13 +96,19 @@ export class GameLobbyComponent implements OnInit {
 
     this.players.push({username: data.trigerIdentifier,points:0,state:"Guessing"})
     console.log(this.players)
+    if(this.active){
+      this.gameChat.push(data.trigerIdentifier+" joined the game")
+    }
+    
   }
 
   gameLeftPlayerEvent(data){
     this.players = this.players.filter(function( obj ) {
       return obj.username !== data.trigerIdentifier;
   });
-  console.log(this.players)
+  if(this.active){
+    this.gameChat.push(data.trigerIdentifier+" left the game")
+  }
   }
 
   gameJoinedEvent(data){
@@ -109,4 +134,13 @@ export class GameLobbyComponent implements OnInit {
     this.gameData.players=""
     this.router.navigate([`/game_menu`])
   }
+
+  guessWord(word:string){
+    this.word.guess = word;
+    this.word.username=this.auth.currentUserValue.username;
+    
+    console.log(this.word)
+    this.gameService.guess(this.word,this.gameData.gameName)
+  }
+
 }

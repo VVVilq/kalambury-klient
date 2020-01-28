@@ -29,3 +29,8 @@
     width: 100%;
     height: 60%;
 }
+
+.messages{
+    overflow: scroll;
+height: 80%;
+}

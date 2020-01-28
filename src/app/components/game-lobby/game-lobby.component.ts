@@ -26,6 +26,8 @@ export class GameLobbyComponent implements OnInit {
     this.players=[]
   }
 
+  gameChat:any[]=[];
+
   active:boolean =false;
   players:Player[];
   gameCreator:boolean=false;
@@ -50,6 +52,15 @@ export class GameLobbyComponent implements OnInit {
 
   gameRoundEvent(data:any){
     console.log(data)
+    if(data.drawingWord){
+      this.gameChat.push("You are now drawing: " + data.drawingWord)
+    }
+
+    if(data.gameEvent){
+      if(data.gameEvent=="DRAWING"){
+        this.gameChat.push(data.trigerIdentifier + " is now drawing")
+      }
+    }
   }
   
   gameSuccesfulCreationEvent(data:any){

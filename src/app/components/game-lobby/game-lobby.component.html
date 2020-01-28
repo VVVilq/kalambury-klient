@@ -10,7 +10,9 @@
              <p>score</p>
         </div>
         <div class="game-chat">
-            <div > for each</div>
+            <div class="messages">
+                <p *ngFor="let message of gameChat">{{message}}</p>
+            </div>
         </div>
     </div>
 </div>
